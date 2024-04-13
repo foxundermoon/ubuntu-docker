@@ -10,7 +10,9 @@ RUN apt-get update && \
     curl \
     gnupg \
     lsb-release \
-    git && \
+    git \
+    tig \
+    gh && \
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get update && \
     apt-get install -y nodejs && \
@@ -23,7 +25,10 @@ RUN apt-get update && \
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    sed -i 's|/bin/bash|/usr/bin/zsh|' /etc/passwd
+    sed -i 's|/bin/bash|/usr/bin/zsh|' /etc/passwd &&\
+    git config --global user.email "hi@fox.mn" &&\
+    git config --global user.email "fox"
+
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
